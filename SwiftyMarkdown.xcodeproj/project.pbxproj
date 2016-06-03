@@ -26,6 +26,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		83A006F01CF8757F0039C55A /* SwiftyMarkdown.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = SwiftyMarkdown.playground; sourceTree = "<group>"; };
 		F4CE98811C8A921300D735C1 /* SwiftyMarkdown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyMarkdown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4CE98841C8A921300D735C1 /* SwiftyMarkdown.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftyMarkdown.h; sourceTree = "<group>"; };
 		F4CE98861C8A921300D735C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -60,6 +61,7 @@
 		F4CE98771C8A921300D735C1 = {
 			isa = PBXGroup;
 			children = (
+				83A006F01CF8757F0039C55A /* SwiftyMarkdown.playground */,
 				F4CE98831C8A921300D735C1 /* SwiftyMarkdown */,
 				F4CE988F1C8A921300D735C1 /* SwiftyMarkdownTests */,
 				F4CE98821C8A921300D735C1 /* Products */,
