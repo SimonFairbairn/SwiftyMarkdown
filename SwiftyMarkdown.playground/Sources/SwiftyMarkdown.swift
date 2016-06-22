@@ -10,7 +10,9 @@ import UIKit
 
 
 /**
- Represents a dictionary of NSAttributedString attributes, to be applied to the parsed Markdown. If the attribute for a style is not set then the system default's Dynamic Type attributes will be used.
+ A struct defining the styles that can be applied to the parsed Markdown. The `fontName` property is optional, and if it's not set then the `fontName` property of the Body style will be applied.
+
+ If that is not set, then the system default will be used.
  */
 
 public typealias AttributesDictionary = [String: AnyObject]
@@ -101,10 +103,10 @@ enum LineStyle : Int {
 
 
 
-/// A class that takes a [Markdown](https://daringfireball.net/projects/markdown/) string or file and returns an NSAttributedString. It will use the system default Dynamic Type attributes unless style attributes are explicitly set.
+/// A class that takes a [Markdown](https://daringfireball.net/projects/markdown/) string or file and returns an NSAttributedString with the applied styles. Supports Dynamic Type.
 public class SwiftyMarkdown {
 
-    private var currentUserAttributesDictionary: AttributesDictionary? {
+    var currentUserAttributesDictionary: AttributesDictionary? {
         switch currentType {
         case .H1:
             return h1
@@ -379,8 +381,9 @@ public class SwiftyMarkdown {
 
                 matchedCharacters.removeRange(newRange)
             }
-        }
 
+        }
+        
         return (matchedCharacters, foundCharacters.stringByReplacingOccurrencesOfString("\\", withString: ""))
     }
     
