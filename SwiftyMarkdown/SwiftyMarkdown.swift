@@ -35,13 +35,16 @@ enum LineStyle : Int {
 	case Bold
 	case Code
 	case Link
+  case Strikethrough
 	
 	static func styleFromString(string : String ) -> LineStyle {
 		if string == "**" || string == "__" {
 			return .Bold
 		} else if string == "*" || string == "_" {
 			return .Italic
-		} else if string == "`" {
+    } else if string == "~~" {
+      return .Strikethrough
+    } else if string == "`" {
 			return .Code
 		} else if string == "["  {
 			return .Link
@@ -92,7 +95,7 @@ public class SwiftyMarkdown {
 
 	
 	let string : String
-	let instructionSet = NSCharacterSet(charactersInString: "[\\*_`")
+	let instructionSet = NSCharacterSet(charactersInString: "[\\*_`~")
 	
 	/**
 	
@@ -398,6 +401,9 @@ public class SwiftyMarkdown {
 			finalFont = UIFont(descriptor: boldDescriptor, size: styleSize)
 		}
 		
+    if style == .Strikethrough {
+      attributes[NSStrikethroughStyleAttributeName] = NSUnderlineStyle.StyleSingle.rawValue
+    }
 		
 		attributes[NSFontAttributeName] = finalFont
 		
