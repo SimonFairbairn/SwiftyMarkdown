@@ -342,7 +342,7 @@ open class SwiftyMarkdown {
 		case .h3:
 			fontName = h3.fontName
 			if #available(iOS 9, *) {
-				textStyle = UIFontTextStyle.title2
+				textStyle = UIFontTextStyle.title3
 			} else {
 				textStyle = UIFontTextStyle.subheadline
 			}
