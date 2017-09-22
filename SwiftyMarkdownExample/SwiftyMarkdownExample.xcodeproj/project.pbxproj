@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84BDB70B1F7566D200071F5C /* SwiftyMarkdown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4CE98E01C8AEFE200D735C1 /* SwiftyMarkdown.framework */; };
+		84BDB70C1F7566D200071F5C /* SwiftyMarkdown.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F4CE98E01C8AEFE200D735C1 /* SwiftyMarkdown.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F421DD991C8AF4E900B86D66 /* example.md in Resources */ = {isa = PBXBuildFile; fileRef = F421DD951C8AF34F00B86D66 /* example.md */; };
 		F4CE98AC1C8AEF7D00D735C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CE98AB1C8AEF7D00D735C1 /* AppDelegate.swift */; };
 		F4CE98AE1C8AEF7D00D735C1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CE98AD1C8AEF7D00D735C1 /* ViewController.swift */; };
@@ -15,11 +17,16 @@
 		F4CE98B61C8AEF7D00D735C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4CE98B41C8AEF7D00D735C1 /* LaunchScreen.storyboard */; };
 		F4CE98C11C8AEF7D00D735C1 /* SwiftyMarkdownExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CE98C01C8AEF7D00D735C1 /* SwiftyMarkdownExampleTests.swift */; };
 		F4CE98CC1C8AEF7D00D735C1 /* SwiftyMarkdownExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CE98CB1C8AEF7D00D735C1 /* SwiftyMarkdownExampleUITests.swift */; };
-		F4CE98E31C8AEFEC00D735C1 /* SwiftyMarkdown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4CE98E01C8AEFE200D735C1 /* SwiftyMarkdown.framework */; };
-		F4CE98E51C8AEFFB00D735C1 /* SwiftyMarkdown.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F4CE98E01C8AEFE200D735C1 /* SwiftyMarkdown.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		84BDB70D1F7566D200071F5C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F4CE98DA1C8AEFE200D735C1 /* SwiftyMarkdown.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F4CE98801C8A921300D735C1;
+			remoteInfo = SwiftyMarkdown;
+		};
 		F4CE98BD1C8AEF7D00D735C1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F4CE98A01C8AEF7D00D735C1 /* Project object */;
@@ -51,14 +58,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		F4CE98E41C8AEFF000D735C1 /* CopyFiles */ = {
+		84BDB70F1F7566D200071F5C /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				F4CE98E51C8AEFFB00D735C1 /* SwiftyMarkdown.framework in CopyFiles */,
+				84BDB70C1F7566D200071F5C /* SwiftyMarkdown.framework in Embed Frameworks */,
 			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -86,7 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F4CE98E31C8AEFEC00D735C1 /* SwiftyMarkdown.framework in Frameworks */,
+				84BDB70B1F7566D200071F5C /* SwiftyMarkdown.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,11 +187,12 @@
 				F4CE98A41C8AEF7D00D735C1 /* Sources */,
 				F4CE98A51C8AEF7D00D735C1 /* Frameworks */,
 				F4CE98A61C8AEF7D00D735C1 /* Resources */,
-				F4CE98E41C8AEFF000D735C1 /* CopyFiles */,
+				84BDB70F1F7566D200071F5C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				84BDB70E1F7566D200071F5C /* PBXTargetDependency */,
 			);
 			name = SwiftyMarkdownExample;
 			productName = SwiftyMarkdownExample;
@@ -238,16 +247,16 @@
 				TargetAttributes = {
 					F4CE98A71C8AEF7D00D735C1 = {
 						CreatedOnToolsVersion = 7.2.1;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0900;
 					};
 					F4CE98BB1C8AEF7D00D735C1 = {
 						CreatedOnToolsVersion = 7.2.1;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0900;
 						TestTargetID = F4CE98A71C8AEF7D00D735C1;
 					};
 					F4CE98C61C8AEF7D00D735C1 = {
 						CreatedOnToolsVersion = 7.2.1;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0900;
 						TestTargetID = F4CE98A71C8AEF7D00D735C1;
 					};
 				};
@@ -352,6 +361,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		84BDB70E1F7566D200071F5C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SwiftyMarkdown;
+			targetProxy = 84BDB70D1F7566D200071F5C /* PBXContainerItemProxy */;
+		};
 		F4CE98BE1C8AEF7D00D735C1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F4CE98A71C8AEF7D00D735C1 /* SwiftyMarkdownExample */;
@@ -433,6 +447,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -479,6 +494,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -487,24 +503,28 @@
 		F4CE98D11C8AEF7D00D735C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SwiftyMarkdownExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.voyagetravelapps.SwiftyMarkdownExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
 		F4CE98D21C8AEF7D00D735C1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SwiftyMarkdownExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.voyagetravelapps.SwiftyMarkdownExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -516,7 +536,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.voyagetravelapps.SwiftyMarkdownExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftyMarkdownExample.app/SwiftyMarkdownExample";
 			};
 			name = Debug;
@@ -529,7 +550,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.voyagetravelapps.SwiftyMarkdownExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftyMarkdownExample.app/SwiftyMarkdownExample";
 			};
 			name = Release;
@@ -541,7 +563,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.voyagetravelapps.SwiftyMarkdownExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = SwiftyMarkdownExample;
 				USES_XCTRUNNER = YES;
 			};
@@ -554,7 +577,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.voyagetravelapps.SwiftyMarkdownExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = SwiftyMarkdownExample;
 				USES_XCTRUNNER = YES;
 			};
