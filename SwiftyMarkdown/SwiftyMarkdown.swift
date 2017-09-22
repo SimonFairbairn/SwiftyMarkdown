@@ -296,7 +296,7 @@ enum LineStyle : Int {
 		
 		var style = LineStyle.styleFromString(results.foundCharacters)
 		
-		var attributes = [String : AnyObject]()
+		var attributes = [NSAttributedStringKey : AnyObject]()
 		if style == .link {
 			
 			var linkText : NSString?
@@ -311,7 +311,7 @@ enum LineStyle : Int {
 			
 			if let hasLink = linkText, let hasURL = linkURL {
 				followingString = hasLink
-				attributes[NSLinkAttributeName] = hasURL
+				attributes[NSAttributedStringKey.link] = hasURL
 			} else {
 				style = .none
 			}
@@ -349,7 +349,7 @@ enum LineStyle : Int {
 				
 				if matchedCharacters.characters.count > 1 {
 					let newRange = hasRange.lowerBound..<matchedCharacters.index(hasRange.upperBound, offsetBy: 1)
-					foundCharacters = foundCharacters + matchedCharacters.substring(with: newRange).replacingOccurrences(of: "\\", with: "")
+                    foundCharacters = foundCharacters + matchedCharacters[newRange].replacingOccurrences(of: "\\", with: "")
 					
 					matchedCharacters.removeSubrange(newRange)
 				} else {
@@ -367,7 +367,7 @@ enum LineStyle : Int {
 	
 	// Make H1
 	
-	func attributedStringFromString(_ string : String, withStyle style : LineStyle, attributes : [String : AnyObject] = [:] ) -> NSAttributedString {
+	func attributedStringFromString(_ string : String, withStyle style : LineStyle, attributes : [NSAttributedStringKey : AnyObject] = [:] ) -> NSAttributedString {
 		let textStyle : UIFontTextStyle
 		var fontName : String?
 		var attributes = attributes
@@ -385,7 +385,7 @@ enum LineStyle : Int {
 			} else {
 				textStyle = UIFontTextStyle.headline
 			}
-			attributes[NSForegroundColorAttributeName] = h1.color
+			attributes[NSAttributedStringKey.foregroundColor] = h1.color
 		case .h2:
 			fontName = h2.fontName
 			fontSize = h2.fontSize
@@ -394,7 +394,7 @@ enum LineStyle : Int {
 			} else {
 				textStyle = UIFontTextStyle.headline
 			}
-			attributes[NSForegroundColorAttributeName] = h2.color
+			attributes[NSAttributedStringKey.foregroundColor] = h2.color
 		case .h3:
 			fontName = h3.fontName
 			fontSize = h3.fontSize
@@ -403,27 +403,27 @@ enum LineStyle : Int {
 			} else {
 				textStyle = UIFontTextStyle.subheadline
 			}
-			attributes[NSForegroundColorAttributeName] = h3.color
+			attributes[NSAttributedStringKey.foregroundColor] = h3.color
 		case .h4:
 			fontName = h4.fontName
 			fontSize = h4.fontSize
 			textStyle = UIFontTextStyle.headline
-			attributes[NSForegroundColorAttributeName] = h4.color
+			attributes[NSAttributedStringKey.foregroundColor] = h4.color
 		case .h5:
 			fontName = h5.fontName
 			fontSize = h5.fontSize
 			textStyle = UIFontTextStyle.subheadline
-			attributes[NSForegroundColorAttributeName] = h5.color
+			attributes[NSAttributedStringKey.foregroundColor] = h5.color
 		case .h6:
 			fontName = h6.fontName
 			fontSize = h6.fontSize
 			textStyle = UIFontTextStyle.footnote
-			attributes[NSForegroundColorAttributeName] = h6.color
+			attributes[NSAttributedStringKey.foregroundColor] = h6.color
 		default:
 			fontName = body.fontName
 			fontSize = body.fontSize
 			textStyle = UIFontTextStyle.body
-			attributes[NSForegroundColorAttributeName] = body.color
+			attributes[NSAttributedStringKey.foregroundColor] = body.color
 			break
 		}
 		
@@ -432,13 +432,13 @@ enum LineStyle : Int {
 		if style == .code {
 			fontName = code.fontName
 			fontSize = code.fontSize
-			attributes[NSForegroundColorAttributeName] = code.color
+			attributes[NSAttributedStringKey.foregroundColor] = code.color
 		}
 		
 		if style == .link {
 			fontName = link.fontName
 			fontSize = link.fontSize
-			attributes[NSForegroundColorAttributeName] = link.color
+			attributes[NSAttributedStringKey.foregroundColor] = link.color
 		}
 		
 		// Fallback to body
@@ -451,7 +451,7 @@ enum LineStyle : Int {
 		fontSize = fontSize == 0.0 ? nil : fontSize
 		let font = UIFont.preferredFont(forTextStyle: textStyle)
 		let styleDescriptor = font.fontDescriptor
-		let styleSize = fontSize ?? styleDescriptor.fontAttributes[UIFontDescriptorSizeAttribute] as? CGFloat ?? CGFloat(14)
+		let styleSize = fontSize ?? styleDescriptor.fontAttributes[UIFontDescriptor.AttributeName.size] as? CGFloat ?? CGFloat(14)
 		
 		var finalFont : UIFont
 		if let finalFontName = fontName, let font = UIFont(name: finalFontName, size: styleSize) {
@@ -475,7 +475,7 @@ enum LineStyle : Int {
 		}
 		
 		
-		attributes[NSFontAttributeName] = finalFont
+		attributes[NSAttributedStringKey.font] = finalFont
 		
 		return NSAttributedString(string: string, attributes: attributes)
 	}
