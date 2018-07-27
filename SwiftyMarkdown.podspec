@@ -10,6 +10,7 @@ s.social_media_url = 'https://twitter.com/SimonFairbairn'
 
 s.ios.deployment_target = "8.0"
 s.tvos.deployment_target = "9.0"
+s.osx.deployment_target  = '10.0'
 s.requires_arc = true
 
 s.source_files = 'SwiftyMarkdown/'

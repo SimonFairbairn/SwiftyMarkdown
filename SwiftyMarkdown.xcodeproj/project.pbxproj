@@ -13,6 +13,10 @@
 		F4CE989C1C8A922E00D735C1 /* SwiftyMarkdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CE989B1C8A922E00D735C1 /* SwiftyMarkdown.swift */; };
 		F4CE98E91C8AF01300D735C1 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = F4CE98E61C8AF01300D735C1 /* LICENSE */; };
 		F4CE98EB1C8AF01300D735C1 /* SwiftyMarkdown.podspec in Resources */ = {isa = PBXBuildFile; fileRef = F4CE98E81C8AF01300D735C1 /* SwiftyMarkdown.podspec */; };
+		FA07C2B1210BA0E300F0D511 /* SwiftyMarkdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CE989B1C8A922E00D735C1 /* SwiftyMarkdown.swift */; };
+		FA07C2B2210BA0E900F0D511 /* SwiftyMarkdown.h in Headers */ = {isa = PBXBuildFile; fileRef = F4CE98841C8A921300D735C1 /* SwiftyMarkdown.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FA07C2BC210BA1BF00F0D511 /* SwiftyMarkdown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA07C2A9210BA0D600F0D511 /* SwiftyMarkdown.framework */; };
+		FA07C2C2210BA20300F0D511 /* SwiftyMarkdownTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CE98901C8A921300D735C1 /* SwiftyMarkdownTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -22,6 +26,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = F4CE98801C8A921300D735C1;
 			remoteInfo = SwiftyMarkdown;
+		};
+		FA07C2BD210BA1BF00F0D511 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F4CE98781C8A921300D735C1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FA07C2A8210BA0D600F0D511;
+			remoteInfo = SwiftyMarkdownMac;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -36,6 +47,8 @@
 		F4CE98E61C8AF01300D735C1 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		F4CE98E71C8AF01300D735C1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F4CE98E81C8AF01300D735C1 /* SwiftyMarkdown.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SwiftyMarkdown.podspec; sourceTree = "<group>"; };
+		FA07C2A9210BA0D600F0D511 /* SwiftyMarkdown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyMarkdown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA07C2B7210BA1BF00F0D511 /* SwiftyMarkdownMacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftyMarkdownMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +64,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4CE988C1C8A921300D735C1 /* SwiftyMarkdown.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA07C2A5210BA0D600F0D511 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA07C2B4210BA1BF00F0D511 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA07C2BC210BA1BF00F0D511 /* SwiftyMarkdown.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +102,8 @@
 			children = (
 				F4CE98811C8A921300D735C1 /* SwiftyMarkdown.framework */,
 				F4CE988B1C8A921300D735C1 /* SwiftyMarkdownTests.xctest */,
+				FA07C2A9210BA0D600F0D511 /* SwiftyMarkdown.framework */,
+				FA07C2B7210BA1BF00F0D511 /* SwiftyMarkdownMacTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -105,6 +135,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4CE98851C8A921300D735C1 /* SwiftyMarkdown.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA07C2A6210BA0D600F0D511 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA07C2B2210BA0E900F0D511 /* SwiftyMarkdown.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,13 +185,49 @@
 			productReference = F4CE988B1C8A921300D735C1 /* SwiftyMarkdownTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		FA07C2A8210BA0D600F0D511 /* SwiftyMarkdownMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA07C2AE210BA0D600F0D511 /* Build configuration list for PBXNativeTarget "SwiftyMarkdownMac" */;
+			buildPhases = (
+				FA07C2A4210BA0D600F0D511 /* Sources */,
+				FA07C2A5210BA0D600F0D511 /* Frameworks */,
+				FA07C2A6210BA0D600F0D511 /* Headers */,
+				FA07C2A7210BA0D600F0D511 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftyMarkdownMac;
+			productName = SwiftyMarkdownMac;
+			productReference = FA07C2A9210BA0D600F0D511 /* SwiftyMarkdown.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		FA07C2B6210BA1BF00F0D511 /* SwiftyMarkdownMacTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA07C2BF210BA1BF00F0D511 /* Build configuration list for PBXNativeTarget "SwiftyMarkdownMacTests" */;
+			buildPhases = (
+				FA07C2B3210BA1BF00F0D511 /* Sources */,
+				FA07C2B4210BA1BF00F0D511 /* Frameworks */,
+				FA07C2B5210BA1BF00F0D511 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FA07C2BE210BA1BF00F0D511 /* PBXTargetDependency */,
+			);
+			name = SwiftyMarkdownMacTests;
+			productName = SwiftyMarkdownMacTests;
+			productReference = FA07C2B7210BA1BF00F0D511 /* SwiftyMarkdownMacTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		F4CE98781C8A921300D735C1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Voyage Travel Apps";
 				TargetAttributes = {
@@ -163,6 +237,14 @@
 					};
 					F4CE988A1C8A921300D735C1 = {
 						CreatedOnToolsVersion = 7.2.1;
+					};
+					FA07C2A8210BA0D600F0D511 = {
+						CreatedOnToolsVersion = 9.4.1;
+						ProvisioningStyle = Manual;
+					};
+					FA07C2B6210BA1BF00F0D511 = {
+						CreatedOnToolsVersion = 9.4.1;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -180,6 +262,8 @@
 			targets = (
 				F4CE98801C8A921300D735C1 /* SwiftyMarkdown */,
 				F4CE988A1C8A921300D735C1 /* SwiftyMarkdownTests */,
+				FA07C2A8210BA0D600F0D511 /* SwiftyMarkdownMac */,
+				FA07C2B6210BA1BF00F0D511 /* SwiftyMarkdownMacTests */,
 			);
 		};
 /* End PBXProject section */
@@ -195,6 +279,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		F4CE98891C8A921300D735C1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA07C2A7210BA0D600F0D511 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA07C2B5210BA1BF00F0D511 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -220,6 +318,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FA07C2A4210BA0D600F0D511 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA07C2B1210BA0E300F0D511 /* SwiftyMarkdown.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA07C2B3210BA1BF00F0D511 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA07C2C2210BA20300F0D511 /* SwiftyMarkdownTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -227,6 +341,11 @@
 			isa = PBXTargetDependency;
 			target = F4CE98801C8A921300D735C1 /* SwiftyMarkdown */;
 			targetProxy = F4CE988D1C8A921300D735C1 /* PBXContainerItemProxy */;
+		};
+		FA07C2BE210BA1BF00F0D511 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FA07C2A8210BA0D600F0D511 /* SwiftyMarkdownMac */;
+			targetProxy = FA07C2BD210BA1BF00F0D511 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -409,6 +528,128 @@
 			};
 			name = Release;
 		};
+		FA07C2AF210BA0D600F0D511 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "$(SRCROOT)/SwiftyMarkdown/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = com.voyagetravelapps.SwiftyMarkdownMac;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		FA07C2B0210BA0D600F0D511 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "$(SRCROOT)/SwiftyMarkdown/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = com.voyagetravelapps.SwiftyMarkdownMac;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		FA07C2C0210BA1BF00F0D511 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = SwiftyMarkdownTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = com.voyagetravelapps.SwiftyMarkdownMacTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		FA07C2C1210BA1BF00F0D511 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = SwiftyMarkdownTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = com.voyagetravelapps.SwiftyMarkdownMacTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -435,6 +676,24 @@
 			buildConfigurations = (
 				F4CE98991C8A921300D735C1 /* Debug */,
 				F4CE989A1C8A921300D735C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FA07C2AE210BA0D600F0D511 /* Build configuration list for PBXNativeTarget "SwiftyMarkdownMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA07C2AF210BA0D600F0D511 /* Debug */,
+				FA07C2B0210BA0D600F0D511 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FA07C2BF210BA1BF00F0D511 /* Build configuration list for PBXNativeTarget "SwiftyMarkdownMacTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA07C2C0210BA1BF00F0D511 /* Debug */,
+				FA07C2C1210BA1BF00F0D511 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

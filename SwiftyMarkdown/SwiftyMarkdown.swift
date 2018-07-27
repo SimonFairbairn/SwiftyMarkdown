@@ -6,12 +6,28 @@
 //  Copyright © 2016 Voyage Travel Apps. All rights reserved.
 //
 
+#if os(OSX)
+
+import AppKit
+public typealias Color = NSColor
+public typealias Font = NSFont
+
+private let systemFontName = NSFont.systemFont(ofSize: 14).fontName
+
+#elseif os(iOS) || os(tvOS) || os(watchOS)
+
 import UIKit
+public typealias Color = UIColor
+public typealias Font = UIFont
+
+private let systemFontName = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body).fontName
+
+#endif
 
 
 @objc public protocol FontProperties {
 	var fontName : String? { get set }
-	var color : UIColor { get set }
+	var color : Color { get set }
 	var fontSize : CGFloat { get set }
 }
 
@@ -22,8 +38,8 @@ A struct defining the styles that can be applied to the parsed Markdown. The `fo
 If that is not set, then the system default will be used.
 */
 @objc open class BasicStyles : NSObject, FontProperties {
-	public var fontName : String? = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body).fontName
-	public var color = UIColor.black
+	public var fontName : String? = systemFontName
+	public var color = Color.black
 	public var fontSize : CGFloat = 0.0
 }
 
@@ -143,7 +159,7 @@ enum LineStyle : Int {
 		link.fontSize = size
 	}
 	
-	open func setFontColorForAllStyles(with color: UIColor) {
+	open func setFontColorForAllStyles(with color: Color) {
 		h1.color = color
 		h2.color = color
 		h3.color = color
@@ -368,61 +384,40 @@ enum LineStyle : Int {
 	// Make H1
 	
 	func attributedStringFromString(_ string : String, withStyle style : LineStyle, attributes : [NSAttributedStringKey : AnyObject] = [:] ) -> NSAttributedString {
-		let textStyle : UIFontTextStyle
 		var fontName : String?
 		var attributes = attributes
 		var fontSize : CGFloat?
 		
 		// What type are we and is there a font name set?
-		
-		
+
 		switch currentType {
 		case .h1:
 			fontName = h1.fontName
 			fontSize = h1.fontSize
-			if #available(iOS 9, *) {
-				textStyle = UIFontTextStyle.title1
-			} else {
-				textStyle = UIFontTextStyle.headline
-			}
 			attributes[NSAttributedStringKey.foregroundColor] = h1.color
 		case .h2:
 			fontName = h2.fontName
 			fontSize = h2.fontSize
-			if #available(iOS 9, *) {
-				textStyle = UIFontTextStyle.title2
-			} else {
-				textStyle = UIFontTextStyle.headline
-			}
 			attributes[NSAttributedStringKey.foregroundColor] = h2.color
 		case .h3:
 			fontName = h3.fontName
 			fontSize = h3.fontSize
-			if #available(iOS 9, *) {
-				textStyle = UIFontTextStyle.title2
-			} else {
-				textStyle = UIFontTextStyle.subheadline
-			}
 			attributes[NSAttributedStringKey.foregroundColor] = h3.color
 		case .h4:
 			fontName = h4.fontName
 			fontSize = h4.fontSize
-			textStyle = UIFontTextStyle.headline
 			attributes[NSAttributedStringKey.foregroundColor] = h4.color
 		case .h5:
 			fontName = h5.fontName
 			fontSize = h5.fontSize
-			textStyle = UIFontTextStyle.subheadline
 			attributes[NSAttributedStringKey.foregroundColor] = h5.color
 		case .h6:
 			fontName = h6.fontName
 			fontSize = h6.fontSize
-			textStyle = UIFontTextStyle.footnote
 			attributes[NSAttributedStringKey.foregroundColor] = h6.color
 		default:
 			fontName = body.fontName
 			fontSize = body.fontSize
-			textStyle = UIFontTextStyle.body
 			attributes[NSAttributedStringKey.foregroundColor] = body.color
 			break
 		}
@@ -449,34 +444,86 @@ enum LineStyle : Int {
 		}
 		
 		fontSize = fontSize == 0.0 ? nil : fontSize
+
+		attributes[NSAttributedStringKey.font] = makeFont(size: fontSize, name: fontName, style: style)
+		
+		return NSAttributedString(string: string, attributes: attributes)
+	}
+
+	private func makeFont(size fontSize : CGFloat?, name fontName : String?, style : LineStyle) -> Font {
+		var finalFont: Font
+		#if os(iOS) || os(tvOS) || os(watchOS)
+
+		let textStyle = textStyleForCurrentType()
 		let font = UIFont.preferredFont(forTextStyle: textStyle)
 		let styleDescriptor = font.fontDescriptor
 		let styleSize = fontSize ?? styleDescriptor.fontAttributes[UIFontDescriptor.AttributeName.size] as? CGFloat ?? CGFloat(14)
-		
-		var finalFont : UIFont
+
 		if let finalFontName = fontName, let font = UIFont(name: finalFontName, size: styleSize) {
 			finalFont = font
 		} else {
 			finalFont = UIFont.preferredFont(forTextStyle:  textStyle)
 		}
-		
+
 		let finalFontDescriptor = finalFont.fontDescriptor
 		if style == .italic {
+
 			if let italicDescriptor = finalFontDescriptor.withSymbolicTraits(.traitItalic) {
 				finalFont = UIFont(descriptor: italicDescriptor, size: styleSize)
 			}
-			
+
 		}
 		if style == .bold {
 			if let boldDescriptor = finalFontDescriptor.withSymbolicTraits(.traitBold) {
 				finalFont = UIFont(descriptor: boldDescriptor, size: styleSize)
 			}
-			
 		}
-		
-		
-		attributes[NSAttributedStringKey.font] = finalFont
-		
-		return NSAttributedString(string: string, attributes: attributes)
+
+		#elseif os(OSX)
+
+		let defaultSize = NSFont.systemFontSize
+		let font = NSFont(name: fontName!, size: fontSize ?? defaultSize) ?? Font.systemFont(ofSize: fontSize ?? defaultSize)
+		finalFont = font
+		if style == .italic {
+			finalFont = NSFontManager.shared.convert(finalFont, toHaveTrait: .italicFontMask)
+		} else if style == .bold {
+			finalFont = NSFontManager.shared.convert(finalFont, toHaveTrait: .boldFontMask)
+		}
+
+		#endif
+		return finalFont
 	}
+
+	#if os(iOS) || os(tvOS) || os(watchOS)
+	private func textStyleForCurrentType() -> UIFontTextStyle {
+		switch currentType {
+		case .h1:
+			if #available(iOS 9, *) {
+				return .title1
+			} else {
+				return .headline
+			}
+		case .h2:
+			if #available(iOS 9, *) {
+				return .title2
+			} else {
+				return .headline
+			}
+		case .h3:
+			if #available(iOS 9, *) {
+				return .title2
+			} else {
+				return .subheadline
+			}
+		case .h4:
+			return .headline
+		case .h5:
+			return .subheadline
+		case .h6:
+			return .footnote
+		default:
+			return .body
+		}
+	}
+	#endif
 }
