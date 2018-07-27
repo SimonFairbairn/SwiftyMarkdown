@@ -42,11 +42,11 @@ if let url = Bundle.main.url(forResource: "file", withExtension: "md"), md = Swi
 ```swift
 md.body.fontName = "AvenirNextCondensed-Medium"
 
-md.h1.color = UIColor.redColor()
+md.h1.color = UIColor.red // NSColor.red
 md.h1.fontName = "AvenirNextCondensed-Bold"
 md.h1.fontSize = 16
+md.italic.color = UIColor.blue // NSColor.blue
 ```
-	md.italic.color = UIColor.blueColor()
 
 ## Screenshot
 
