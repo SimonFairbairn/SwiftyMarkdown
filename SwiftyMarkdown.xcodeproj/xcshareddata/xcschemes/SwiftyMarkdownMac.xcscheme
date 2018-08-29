@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "FA07C2A8210BA0D600F0D511"
-               BuildableName = "SwiftyMarkdownMac.framework"
+               BuildableName = "SwiftyMarkdown.framework"
                BlueprintName = "SwiftyMarkdownMac"
                ReferencedContainer = "container:SwiftyMarkdown.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FA07C2A8210BA0D600F0D511"
-            BuildableName = "SwiftyMarkdownMac.framework"
+            BuildableName = "SwiftyMarkdown.framework"
             BlueprintName = "SwiftyMarkdownMac"
             ReferencedContainer = "container:SwiftyMarkdown.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FA07C2A8210BA0D600F0D511"
-            BuildableName = "SwiftyMarkdownMac.framework"
+            BuildableName = "SwiftyMarkdown.framework"
             BlueprintName = "SwiftyMarkdownMac"
             ReferencedContainer = "container:SwiftyMarkdown.xcodeproj">
          </BuildableReference>

@@ -14,6 +14,10 @@ public typealias Font = NSFont
 
 private let systemFontName = NSFont.systemFont(ofSize: 14).fontName
 
+extension Color {
+	fileprivate static var defaultColor: Color { return .labelColor }
+}
+
 #elseif os(iOS) || os(tvOS) || os(watchOS)
 
 import UIKit
@@ -21,6 +25,10 @@ public typealias Color = UIColor
 public typealias Font = UIFont
 
 private let systemFontName = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body).fontName
+
+extension Color {
+	fileprivate static var defaultColor: Color { return .black }
+}
 
 #endif
 
@@ -39,7 +47,7 @@ If that is not set, then the system default will be used.
 */
 @objc open class BasicStyles : NSObject, FontProperties {
 	public var fontName : String? = systemFontName
-	public var color = Color.black
+	public var color = Color.defaultColor
 	public var fontSize : CGFloat = 0.0
 }
 
