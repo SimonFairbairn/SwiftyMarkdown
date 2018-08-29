@@ -15,7 +15,7 @@ public typealias Font = NSFont
 private let systemFontName = NSFont.systemFont(ofSize: 14).fontName
 
 extension Color {
-	fileprivate static var defaultColor: Color { return .labelColor }
+	fileprivate static var defaultColor: Color { return .textColor }
 }
 
 #elseif os(iOS) || os(tvOS) || os(watchOS)
