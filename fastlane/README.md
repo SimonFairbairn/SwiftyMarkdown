@@ -8,25 +8,11 @@ Make sure you have the latest version of the Xcode command line tools installed:
 xcode-select --install
 ```
 
-## Choose your installation method:
-
-<table width="100%" >
-<tr>
-<th width="33%"><a href="http://brew.sh">Homebrew</a></td>
-<th width="33%">Installer Script</td>
-<th width="33%">Rubygems</td>
-</tr>
-<tr>
-<td width="33%" align="center">macOS</td>
-<td width="33%" align="center">macOS</td>
-<td width="33%" align="center">macOS or Linux with Ruby 2.0.0 or above</td>
-</tr>
-<tr>
-<td width="33%"><code>brew cask install fastlane</code></td>
-<td width="33%"><a href="https://download.fastlane.tools">Download the zip file</a>. Then double click on the <code>install</code> script (or run it in a terminal window).</td>
-<td width="33%"><code>sudo gem install fastlane -NV</code></td>
-</tr>
-</table>
+Install _fastlane_ using
+```
+[sudo] gem install fastlane -NV
+```
+or alternatively using `brew cask install fastlane`
 
 # Available Actions
 ## iOS
@@ -43,10 +29,6 @@ This does the following:
 - Ensures Cocoapods compatibility
 
 - Bumps the patch version
-
-- Pushes it to the remote repository
-
-- Updates the spec repository
 ### ios minor
 ```
 fastlane ios minor
@@ -60,10 +42,6 @@ This does the following:
 - Ensures Cocoapods compatibility
 
 - Bumps the minor version
-
-- Pushes it to the remote repository
-
-- Updates the spec repository
 ### ios major
 ```
 fastlane ios major
@@ -77,10 +55,6 @@ This does the following:
 - Ensures Cocoapods compatibility
 
 - Bumps the major version
-
-- Pushes it to the remote repository
-
-- Updates the spec repository
 ### ios test
 ```
 fastlane ios test
@@ -90,7 +64,7 @@ fastlane ios test
 ```
 fastlane ios submit_pod
 ```
-
+Push the repo to remote and submits the Pod to the given spec repository. Do this after running update to run tests, bump versions, and commit changes.
 
 ----
 
