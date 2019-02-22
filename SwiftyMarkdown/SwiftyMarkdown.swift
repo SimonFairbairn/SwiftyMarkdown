@@ -24,7 +24,7 @@ import UIKit
 public typealias Color = UIColor
 public typealias Font = UIFont
 
-private let systemFontName = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body).fontName
+private let systemFontName = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body).fontName
 
 extension Color {
 	fileprivate static var defaultColor: Color { return .black }
@@ -320,7 +320,7 @@ enum LineStyle : Int {
 		
 		var style = LineStyle.styleFromString(results.foundCharacters)
 		
-		var attributes = [NSAttributedStringKey : AnyObject]()
+      var attributes = [NSAttributedString.Key : AnyObject]()
 		if style == .link {
 			
 			var linkText : NSString?
@@ -335,7 +335,7 @@ enum LineStyle : Int {
 			
 			if let hasLink = linkText, let hasURL = linkURL {
 				followingString = hasLink
-				attributes[NSAttributedStringKey.link] = hasURL
+				attributes[.link] = hasURL
 			} else {
 				style = .none
 			}
@@ -391,7 +391,7 @@ enum LineStyle : Int {
 	
 	// Make H1
 	
-	func attributedStringFromString(_ string : String, withStyle style : LineStyle, attributes : [NSAttributedStringKey : AnyObject] = [:] ) -> NSAttributedString {
+   func attributedStringFromString(_ string : String, withStyle style : LineStyle, attributes : [NSAttributedString.Key : AnyObject] = [:] ) -> NSAttributedString {
 		var fontName : String?
 		var attributes = attributes
 		var fontSize : CGFloat?
@@ -402,31 +402,31 @@ enum LineStyle : Int {
 		case .h1:
 			fontName = h1.fontName
 			fontSize = h1.fontSize
-			attributes[NSAttributedStringKey.foregroundColor] = h1.color
+			attributes[.foregroundColor] = h1.color
 		case .h2:
 			fontName = h2.fontName
 			fontSize = h2.fontSize
-			attributes[NSAttributedStringKey.foregroundColor] = h2.color
+			attributes[.foregroundColor] = h2.color
 		case .h3:
 			fontName = h3.fontName
 			fontSize = h3.fontSize
-			attributes[NSAttributedStringKey.foregroundColor] = h3.color
+			attributes[.foregroundColor] = h3.color
 		case .h4:
 			fontName = h4.fontName
 			fontSize = h4.fontSize
-			attributes[NSAttributedStringKey.foregroundColor] = h4.color
+			attributes[.foregroundColor] = h4.color
 		case .h5:
 			fontName = h5.fontName
 			fontSize = h5.fontSize
-			attributes[NSAttributedStringKey.foregroundColor] = h5.color
+			attributes[.foregroundColor] = h5.color
 		case .h6:
 			fontName = h6.fontName
 			fontSize = h6.fontSize
-			attributes[NSAttributedStringKey.foregroundColor] = h6.color
+			attributes[.foregroundColor] = h6.color
 		default:
 			fontName = body.fontName
 			fontSize = body.fontSize
-			attributes[NSAttributedStringKey.foregroundColor] = body.color
+         attributes[.foregroundColor] = body.color
 			break
 		}
 		
@@ -435,13 +435,13 @@ enum LineStyle : Int {
 		if style == .code {
 			fontName = code.fontName
 			fontSize = code.fontSize
-			attributes[NSAttributedStringKey.foregroundColor] = code.color
+         attributes[.foregroundColor] = code.color
 		}
 		
 		if style == .link {
 			fontName = link.fontName
 			fontSize = link.fontSize
-			attributes[NSAttributedStringKey.foregroundColor] = link.color
+         attributes[.foregroundColor] = link.color
 		}
 		
 		// Fallback to body
@@ -453,7 +453,7 @@ enum LineStyle : Int {
 		
 		fontSize = fontSize == 0.0 ? nil : fontSize
 
-		attributes[NSAttributedStringKey.font] = makeFont(size: fontSize, name: fontName, style: style)
+      attributes[.font] = makeFont(size: fontSize, name: fontName, style: style)
 		
 		return NSAttributedString(string: string, attributes: attributes)
 	}
@@ -503,7 +503,7 @@ enum LineStyle : Int {
 	}
 
 	#if os(iOS) || os(tvOS) || os(watchOS)
-	private func textStyleForCurrentType() -> UIFontTextStyle {
+   private func textStyleForCurrentType() -> UIFont.TextStyle {
 		switch currentType {
 		case .h1:
 			if #available(iOS 9, *) {
