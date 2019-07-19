@@ -38,15 +38,18 @@ enum LineStyle : Int {
 	case bold
 	case code
 	case link
+    case strikethrough
 	
 	static func styleFromString(_ string : String ) -> LineStyle {
 		if string == "**" || string == "__" {
 			return .bold
 		} else if string == "*" || string == "_" {
 			return .italic
+        } else if string == "~~" {
+            return .strikethrough
 		} else if string == "`" {
 			return .code
-		} else if string == "["  {
+        } else if string == "["  {
 			return .link
 		} else {
 			return .none
@@ -95,7 +98,7 @@ enum LineStyle : Int {
 	
 	
 	let string : String
-	let instructionSet = CharacterSet(charactersIn: "[\\*_`")
+	let instructionSet = CharacterSet(charactersIn: "[\\*_`~")
 	
 	/**
 	
@@ -473,7 +476,10 @@ enum LineStyle : Int {
 			}
 			
 		}
-		
+
+        if style == .strikethrough {
+            attributes[NSAttributedString.Key.strikethroughStyle] = NSNumber(integerLiteral: NSUnderlineStyle.single.rawValue)
+        }
 		
 		attributes[NSAttributedString.Key.font] = finalFont
 		
