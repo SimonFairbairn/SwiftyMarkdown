@@ -69,6 +69,8 @@ class SwiftyMarkdownTests: XCTestCase {
 		let codeWithinString = "A string with `code` (should not be indented)"
 		let italicAtStartOfString = "*An italicised string*"
 		let italicWithinString = "A string with *italicised* text"
+        let strikethroughAtStartOfString = "~~A strikethrough string~~"
+        let strikethroughWithinString = "A string with a ~~strikethrough~~ word"
 		
 		let multipleBoldWords = "__A bold string__ with a **mix** **of** bold __styles__"
 		let multipleCodeWords = "`A code string` with multiple `code` `instances`"
@@ -94,6 +96,12 @@ class SwiftyMarkdownTests: XCTestCase {
 		
 		md = SwiftyMarkdown(string: italicWithinString)
 		XCTAssertEqual(md.attributedString().string, "A string with italicised text")
+
+        md = SwiftyMarkdown(string: strikethroughAtStartOfString)
+        XCTAssertEqual(md.attributedString().string, "A strikethrough string")
+
+        md = SwiftyMarkdown(string: strikethroughWithinString)
+        XCTAssertEqual(md.attributedString().string, "A string with a strikethrough word")
 		
 		md = SwiftyMarkdown(string: multipleBoldWords)
 		XCTAssertEqual(md.attributedString().string, "A bold string with a mix of bold styles")
