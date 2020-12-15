@@ -572,7 +572,7 @@ extension SwiftyMarkdown {
             if let linkIdx = styles.firstIndex(of: .link), linkIdx < token.metadataStrings.count {
                 attributes[.foregroundColor] = self.link.color
                 attributes[.font] = self.font(for: line, characterOverride: .link)
-                attributes[.link] = token.metadataStrings[linkIdx] as AnyObject
+                attributes[.link] = URL(string: token.metadataStrings[linkIdx]) as AnyObject
                 
                 if underlineLinks {
                     attributes[.underlineStyle] = self.link.underlineStyle.rawValue as AnyObject
