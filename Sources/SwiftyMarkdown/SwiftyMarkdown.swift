@@ -36,8 +36,8 @@ public enum CharacterStyle : CharacterStyling {
 	}
 }
 
-enum MarkdownLineStyle : LineStyling {
-    var shouldTokeniseLine: Bool {
+public enum MarkdownLineStyle : LineStyling {
+    public var shouldTokeniseLine: Bool {
         switch self {
         case .codeblock:
             return false
@@ -66,7 +66,7 @@ enum MarkdownLineStyle : LineStyling {
 	case orderedListIndentSecondOrder
 	case referencedLink
 	
-    func styleIfFoundStyleAffectsPreviousLine() -> LineStyling? {
+    public func styleIfFoundStyleAffectsPreviousLine() -> LineStyling? {
         switch self {
         case .previousH1:
             return MarkdownLineStyle.h1

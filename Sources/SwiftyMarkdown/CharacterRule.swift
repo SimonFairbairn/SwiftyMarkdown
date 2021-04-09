@@ -45,7 +45,7 @@ public struct CharacterRule : CustomStringConvertible {
 	public let primaryTag : CharacterRuleTag
 	public let tags : [CharacterRuleTag]
 	public let escapeCharacters : [Character]
-	public let styles : [Int : CharacterStyling]
+	public var styles : [Int : CharacterStyling]
 	public let minTags : Int
 	public let maxTags : Int
 	public var metadataLookup : Bool = false

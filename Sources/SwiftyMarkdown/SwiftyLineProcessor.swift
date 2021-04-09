@@ -54,11 +54,11 @@ public struct FrontMatterRule {
 }
 
 public struct LineRule {
-    let token : String
-    let removeFrom : Remove
-    let type : LineStyling
-    let shouldTrim : Bool
-    let changeAppliesTo : ChangeApplication
+    public let token : String
+    public let removeFrom : Remove
+    public var type : LineStyling
+    public let shouldTrim : Bool
+    public let changeAppliesTo : ChangeApplication
     
     public init(token : String, type : LineStyling, removeFrom : Remove = .leading, shouldTrim : Bool = true, changeAppliesTo : ChangeApplication = .current ) {
         self.token = token
