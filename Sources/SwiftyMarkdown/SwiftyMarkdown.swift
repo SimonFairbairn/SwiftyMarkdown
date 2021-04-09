@@ -267,6 +267,8 @@ If that is not set, then the system default will be used.
 	var previouslyFoundTokens : [Token] = []
 	
 	var applyAttachments = true
+    public var ignoresDynamicSize = false
+
 	
 	let perfomanceLog = PerformanceLog(with: "SwiftyMarkdownPerformanceLogging", identifier: "Swifty Markdown", log: .swiftyMarkdownPerformance)
 		
