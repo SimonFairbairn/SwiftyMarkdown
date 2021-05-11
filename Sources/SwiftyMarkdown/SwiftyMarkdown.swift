@@ -601,18 +601,7 @@ extension SwiftyMarkdown {
                 let str = NSMutableAttributedString(attachment: image1Attachment)
                 str.addAttributes([.paragraphStyle: paragraphStyle], range: NSMakeRange(0, str.length))
                 
-				finalAttributedString.append(str)
-				#elseif !os(watchOS)
-				let image1Attachment = NSTextAttachment()
-				image1Attachment.image = NSImage(named: token.metadataStrings[imgIdx])
-                
-                let paragraphStyle: NSMutableParagraphStyle = NSMutableParagraphStyle()
-                paragraphStyle.alignment = paragraphStyle.alignment = lineProperties.alignment
-
-                let str = NSMutableAttributedString(attachment: image1Attachment)
-                str.addAttributes([.paragraphStyle: paragraphStyle], range: NSMakeRange(0, str.length))
-                
-				finalAttributedString.append(str)
+                finalAttributedString.append(str)
 				#endif
 				continue
 			}
