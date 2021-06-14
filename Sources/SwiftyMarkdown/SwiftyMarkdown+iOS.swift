@@ -14,6 +14,10 @@ import UIKit
 extension SwiftyMarkdown {
 	
 	func font( for line : SwiftyLine, characterOverride : CharacterStyle? = nil ) -> UIFont {
+		font(for: line, characterOverrides: characterOverride == nil ? [] : [characterOverride!])
+	}
+	
+	func font( for line : SwiftyLine, characterOverrides : [CharacterStyle]) -> UIFont {
 		let textStyle : UIFont.TextStyle
 		var fontName : String?
 		var fontSize : CGFloat?
@@ -83,7 +87,7 @@ extension SwiftyMarkdown {
 			fontName = body.fontName
 		}
 		
-		if let characterOverride = characterOverride {
+		for characterOverride in characterOverrides {
 			switch characterOverride {
 			case .code:
 				fontName = code.fontName ?? fontName
@@ -129,11 +133,12 @@ extension SwiftyMarkdown {
 			font = UIFont.preferredFont(forTextStyle: textStyle)
 		}
 		
-		if globalItalic, let italicDescriptor = font.fontDescriptor.withSymbolicTraits(.traitItalic) {
-			font = UIFont(descriptor: italicDescriptor, size: fontSize ?? 0)
-		}
-		if globalBold, let boldDescriptor = font.fontDescriptor.withSymbolicTraits(.traitBold) {
+		if globalItalic, globalBold, let boldItalicDescriptor = font.fontDescriptor.withSymbolicTraits([.traitItalic, .traitBold]) {
+			font = UIFont(descriptor: boldItalicDescriptor, size: fontSize ?? 0)
+		} else if globalBold, let boldDescriptor = font.fontDescriptor.withSymbolicTraits(.traitBold) {
 			font = UIFont(descriptor: boldDescriptor, size: fontSize ?? 0)
+		} else if globalItalic, let italicDescriptor = font.fontDescriptor.withSymbolicTraits(.traitItalic) {
+			font = UIFont(descriptor: italicDescriptor, size: fontSize ?? 0)
 		}
 		
 		return font
