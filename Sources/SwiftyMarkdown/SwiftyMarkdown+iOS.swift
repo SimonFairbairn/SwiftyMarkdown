@@ -26,25 +26,13 @@ extension SwiftyMarkdown {
 		switch line.lineStyle as! MarkdownLineStyle {
 		case .h1:
 			style = self.h1
-			if #available(iOS 9, *) {
-				textStyle = UIFont.TextStyle.title1
-			} else {
-				textStyle = UIFont.TextStyle.headline
-			}
+            textStyle = UIFont.TextStyle.title1
 		case .h2:
 			style = self.h2
-			if #available(iOS 9, *) {
-				textStyle = UIFont.TextStyle.title2
-			} else {
-				textStyle = UIFont.TextStyle.headline
-			}
+            textStyle = UIFont.TextStyle.title2
 		case .h3:
 			style = self.h3
-			if #available(iOS 9, *) {
-				textStyle = UIFont.TextStyle.title2
-			} else {
-				textStyle = UIFont.TextStyle.subheadline
-			}
+			textStyle = UIFont.TextStyle.title2
 		case .h4:
 			style = self.h4
 			textStyle = UIFont.TextStyle.headline
@@ -120,8 +108,12 @@ extension SwiftyMarkdown {
 			}
 			
 			if let customFont = UIFont(name: existentFontName, size: finalSize)  {
-				let fontMetrics = UIFontMetrics(forTextStyle: textStyle)
-				font = fontMetrics.scaledFont(for: customFont)
+                if #available(iOS 11, *) {
+                    let fontMetrics = UIFontMetrics(forTextStyle: textStyle)
+                    font = fontMetrics.scaledFont(for: customFont)
+                } else {
+                    font = UIFontDescriptor.scaledFont(for: customFont, with: textStyle)
+                }
 			} else {
 				font = UIFont.preferredFont(forTextStyle: textStyle)
 			}

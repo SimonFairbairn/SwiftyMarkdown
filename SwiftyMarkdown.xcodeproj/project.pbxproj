@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		56A32CD4267B910C00A3EFED /* UIFontDescriptor+SwiftyMarkdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A32CD3267B910C00A3EFED /* UIFontDescriptor+SwiftyMarkdown.swift */; };
 		F4ACB6CB23E8A5C500EA665D /* SwiftyScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ACB6CA23E8A5C500EA665D /* SwiftyScanner.swift */; };
 		F4ACB6CE23E8A88400EA665D /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ACB6CD23E8A88400EA665D /* Token.swift */; };
 		F4ACB6D023E8A8A500EA665D /* CharacterRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ACB6CF23E8A8A500EA665D /* CharacterRule.swift */; };
@@ -59,6 +60,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		56A32CD3267B910C00A3EFED /* UIFontDescriptor+SwiftyMarkdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFontDescriptor+SwiftyMarkdown.swift"; sourceTree = "<group>"; };
 		F4ACB6CA23E8A5C500EA665D /* SwiftyScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyScanner.swift; sourceTree = "<group>"; };
 		F4ACB6CD23E8A88400EA665D /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		F4ACB6CF23E8A8A500EA665D /* CharacterRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterRule.swift; sourceTree = "<group>"; };
@@ -169,16 +171,17 @@
 		OBJ_8 /* SwiftyMarkdown */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_9 /* String+SwiftyMarkdown.swift */,
-				OBJ_10 /* SwiftyLineProcessor.swift */,
-				OBJ_11 /* SwiftyMarkdown+iOS.swift */,
-				OBJ_12 /* SwiftyMarkdown+macOS.swift */,
-				OBJ_13 /* SwiftyMarkdown.swift */,
-				OBJ_14 /* SwiftyTokeniser.swift */,
-				F4ACB6CD23E8A88400EA665D /* Token.swift */,
-				F4ACB6CA23E8A5C500EA665D /* SwiftyScanner.swift */,
 				F4ACB6CF23E8A8A500EA665D /* CharacterRule.swift */,
 				F4ACB6D123E8B08400EA665D /* PerfomanceLog.swift */,
+				OBJ_9 /* String+SwiftyMarkdown.swift */,
+				OBJ_10 /* SwiftyLineProcessor.swift */,
+				OBJ_13 /* SwiftyMarkdown.swift */,
+				OBJ_11 /* SwiftyMarkdown+iOS.swift */,
+				OBJ_12 /* SwiftyMarkdown+macOS.swift */,
+				F4ACB6CA23E8A5C500EA665D /* SwiftyScanner.swift */,
+				OBJ_14 /* SwiftyTokeniser.swift */,
+				F4ACB6CD23E8A88400EA665D /* Token.swift */,
+				56A32CD3267B910C00A3EFED /* UIFontDescriptor+SwiftyMarkdown.swift */,
 			);
 			name = SwiftyMarkdown;
 			path = Sources/SwiftyMarkdown;
@@ -268,6 +271,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				56A32CD4267B910C00A3EFED /* UIFontDescriptor+SwiftyMarkdown.swift in Sources */,
 				OBJ_40 /* String+SwiftyMarkdown.swift in Sources */,
 				OBJ_41 /* SwiftyLineProcessor.swift in Sources */,
 				F4ACB6D223E8B08400EA665D /* PerfomanceLog.swift in Sources */,
