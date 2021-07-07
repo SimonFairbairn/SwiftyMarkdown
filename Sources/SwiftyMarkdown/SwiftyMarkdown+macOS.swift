@@ -18,6 +18,7 @@ extension SwiftyMarkdown {
 		
 		var globalBold = false
 		var globalItalic = false
+        var globalUnderline = false
 		
 		let style : FontProperties
 		// What type are we and is there a font name set?
@@ -49,6 +50,8 @@ extension SwiftyMarkdown {
 			globalBold = true
 		case .italic:
 			globalItalic = true
+        case .underline:
+            globalUnderline = true
 		case .boldItalic:
 			globalItalic = true
 			globalBold = true
@@ -72,6 +75,10 @@ extension SwiftyMarkdown {
 				fontName = bold.fontName ?? fontName
 				fontSize = bold.fontSize
 				globalBold = true
+            case .underline:
+                fontName = underline.fontName ?? fontName
+                fontSize = underline.fontSize
+                globalUnderline = true
 			case .italic:
 				fontName = italic.fontName ?? fontName
 				fontSize = italic.fontSize
