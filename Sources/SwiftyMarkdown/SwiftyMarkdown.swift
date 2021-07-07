@@ -21,6 +21,7 @@ public enum CharacterStyle : CharacterStyling {
 	case none
 	case bold
 	case italic
+    case underline
 	case code
 	case link
 	case image
@@ -82,6 +83,7 @@ enum MarkdownLineStyle : LineStyling {
 	case normal
 	case bold
 	case italic
+    case underline
 	case boldItalic
 }
 
@@ -201,8 +203,8 @@ If that is not set, then the system default will be used.
 		], styles: [1 : CharacterStyle.link], metadataLookup: false, definesBoundary: true),
 		CharacterRule(primaryTag: CharacterRuleTag(tag: "`", type: .repeating), otherTags: [], styles: [1 : CharacterStyle.code], shouldCancelRemainingRules: true, balancedTags: true),
 		CharacterRule(primaryTag:CharacterRuleTag(tag: "~", type: .repeating), otherTags : [], styles: [2 : CharacterStyle.strikethrough], minTags:2 , maxTags:2),
-		CharacterRule(primaryTag: CharacterRuleTag(tag: "*", type: .repeating), otherTags: [], styles: [1 : CharacterStyle.italic, 2 : CharacterStyle.bold], minTags:1 , maxTags:2),
-		CharacterRule(primaryTag: CharacterRuleTag(tag: "_", type: .repeating), otherTags: [], styles: [1 : CharacterStyle.italic, 2 : CharacterStyle.bold], minTags:1 , maxTags:2)
+        CharacterRule(primaryTag: CharacterRuleTag(tag: "*", type: .repeating), otherTags: [], styles: [1 : CharacterStyle.italic, 2 : CharacterStyle.bold, 3 : CharacterStyle.underline], minTags:1 , maxTags:3),
+		CharacterRule(primaryTag: CharacterRuleTag(tag: "_", type: .repeating), otherTags: [], styles: [1 : CharacterStyle.italic, 2 : CharacterStyle.bold, 3 : CharacterStyle.underline], minTags:1 , maxTags:3)
 	]
 	
 	let lineProcessor = SwiftyLineProcessor(rules: SwiftyMarkdown.lineRules, defaultRule: MarkdownLineStyle.body, frontMatterRules: SwiftyMarkdown.frontMatterRules)
@@ -237,6 +239,9 @@ If that is not set, then the system default will be used.
 	
 	/// The styles to apply to any bold text found in the Markdown
 	open var bold = BasicStyles()
+    
+    /// The styles to apply to any underlined text found in the Markdown
+    open var underline = BasicStyles()
 	
 	/// The styles to apply to any italic text found in the Markdown
 	open var italic = BasicStyles()
@@ -244,6 +249,7 @@ If that is not set, then the system default will be used.
 	/// The styles to apply to any code blocks or inline code text found in the Markdown
 	open var code = BasicStyles()
 	
+    /// The styles to apply to any text with 'strikethrough' decoration found in the Markdown
 	open var strikethrough = BasicStyles()
 	
 	public var bullet : String = "・"
@@ -327,6 +333,7 @@ If that is not set, then the system default will be used.
 		body.fontSize = size
 		italic.fontSize = size
 		bold.fontSize = size
+        underline.fontSize = size
 		code.fontSize = size
 		link.fontSize = size
 		link.fontSize = size
@@ -344,6 +351,7 @@ If that is not set, then the system default will be used.
 		body.color = color
 		italic.color = color
 		bold.color = color
+        underline.color = color
 		code.color = color
 		link.color = color
 		blockquotes.color = color
@@ -360,6 +368,7 @@ If that is not set, then the system default will be used.
 		body.color = color
 		italic.color = color
 		bold.color = color
+        underline.color = color
 		code.color = color
 		link.color = color
 		blockquotes.color = color
@@ -377,6 +386,7 @@ If that is not set, then the system default will be used.
 		body.fontName = name
 		italic.fontName = name
 		bold.fontName = name
+        underline.fontName = name
 		code.fontName = name
 		link.fontName = name
 		blockquotes.fontName = name
@@ -555,6 +565,7 @@ extension SwiftyMarkdown {
 			attributes[.font] = self.font(for: line)
 			attributes[.link] = nil
 			attributes[.strikethroughStyle] = nil
+            attributes[.underlineStyle] = nil
 			attributes[.foregroundColor] = self.color(for: line)
             attributes[.underlineStyle] = nil
 			guard let styles = token.characterStyles as? [CharacterStyle] else {
@@ -568,6 +579,10 @@ extension SwiftyMarkdown {
 				attributes[.font] = self.font(for: line, characterOverride: .bold)
 				attributes[.foregroundColor] = self.bold.color
 			}
+            if styles.contains(.underline) {
+                attributes[.font] = self.font(for: line, characterOverride: .underline)
+                attributes[.foregroundColor] = self.underline.color
+            }
 			
             if let linkIdx = styles.firstIndex(of: .link), linkIdx < token.metadataStrings.count {
                 attributes[.foregroundColor] = self.link.color
@@ -586,6 +601,12 @@ extension SwiftyMarkdown {
 				attributes[.foregroundColor] = self.strikethrough.color
 			}
 			
+            if styles.contains(.underline) {
+                attributes[.font] = self.font(for: line, characterOverride: .underline)
+                attributes[.underlineStyle] = NSUnderlineStyle.single.rawValue as AnyObject
+                attributes[.foregroundColor] = self.underline.color
+            }
+            
 			#if !os(watchOS)
 			if let imgIdx = styles.firstIndex(of: .image), imgIdx < token.metadataStrings.count {
 				if !self.applyAttachments {
