@@ -11,8 +11,11 @@ import Foundation
 import AppKit
 
 extension SwiftyMarkdown {
-	
 	func font( for line : SwiftyLine, characterOverride : CharacterStyle? = nil ) -> NSFont {
+		font(for: line, characterOverrides: characterOverride == nil ? [] : [characterOverride!])
+	}
+	
+	func font( for line : SwiftyLine, characterOverrides : [CharacterStyle]) -> NSFont {
 		var fontName : String?
 		var fontSize : CGFloat?
 		
@@ -60,7 +63,7 @@ extension SwiftyMarkdown {
 			fontName = body.fontName
 		}
 		
-		if let characterOverride = characterOverride {
+		for characterOverride in characterOverrides {
 			switch characterOverride {
 			case .code:
 				fontName = code.fontName ?? fontName
@@ -99,13 +102,15 @@ extension SwiftyMarkdown {
 			font = NSFont.systemFont(ofSize: finalSize)
 		}
 		
-		if globalItalic {
-			let italicDescriptor = font.fontDescriptor.withSymbolicTraits(.italic)
-			font = NSFont(descriptor: italicDescriptor, size: 0) ?? font
-		}
-		if globalBold {
+		if globalItalic, globalBold {
+			let boldItalicDescriptor = font.fontDescriptor.withSymbolicTraits([.italic, .bold])
+			font = NSFont(descriptor: boldItalicDescriptor, size: 0) ?? font
+		} else if globalBold {
 			let boldDescriptor = font.fontDescriptor.withSymbolicTraits(.bold)
 			font = NSFont(descriptor: boldDescriptor, size: 0) ?? font
+		} else if globalItalic {
+			let italicDescriptor = font.fontDescriptor.withSymbolicTraits(.italic)
+			font = NSFont(descriptor: italicDescriptor, size: 0) ?? font
 		}
 		
 		return font
