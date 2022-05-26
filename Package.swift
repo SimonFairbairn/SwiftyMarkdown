@@ -4,7 +4,7 @@ import PackageDescription
 let package = Package(
     name: "SwiftyMarkdown",
     platforms: [
-        .iOS(SupportedPlatform.IOSVersion.v11),
+        .iOS(SupportedPlatform.IOSVersion.v10),
         .tvOS(SupportedPlatform.TVOSVersion.v11),
 		.macOS(.v10_12),
 		.watchOS(.v4)
