@@ -216,7 +216,7 @@ If that is not set, then the system default will be used.
 		bold.fontSize = size
 		code.fontSize = size
 		link.fontSize = size
-		link.fontSize = size
+		blockquotes.fontSize = size
 	}
 	
 	open func setFontColorForAllStyles(with color: UIColor) {
