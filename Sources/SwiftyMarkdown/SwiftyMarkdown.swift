@@ -17,7 +17,7 @@ extension OSLog {
 	static let swiftyMarkdownPerformance = OSLog(subsystem: subsystem, category: "Swifty Markdown Performance")
 }
 
-public enum CharacterStyle : CharacterStyling {
+public enum CharacterStyle : CharacterStyling, Equatable {
 	case none
 	case bold
 	case italic
@@ -27,12 +27,48 @@ public enum CharacterStyle : CharacterStyling {
 	case referencedLink
 	case referencedImage
 	case strikethrough
+	#if os(macOS)
+	case color(color: NSColor)
+	case font(font: NSFont)
+	#else
+	case color(color: UIColor)
+	case font(font: UIFont)
+	#endif
 	
 	public func isEqualTo(_ other: CharacterStyling) -> Bool {
 		guard let other = other as? CharacterStyle else {
 			return false
 		}
 		return other == self 
+	}
+	
+	public static func == (lhs: CharacterStyle, rhs: CharacterStyle) -> Bool {
+		switch (lhs, rhs) {
+		case (.color, .color):
+			return true
+		case (.font, .font):
+			return true
+		case (.none, .none):
+			return true
+		case (.bold, .bold):
+			return true
+		case (.italic, .italic):
+			return true
+		case (.code, .code):
+			return true
+		case (.link, .link):
+			return true
+		case (.image, .image):
+			return true
+		case (.referencedLink, .referencedLink):
+			return true
+		case (.referencedImage, .referencedImage):
+			return true
+		case (.strikethrough, .strikethrough):
+			return true
+		default:
+			return false
+		}
 	}
 }
 
@@ -439,11 +475,7 @@ If that is not set, then the system default will be used.
 		return attributedString
 	}
 	
-}
-
-extension SwiftyMarkdown {
-	
-	func attributedStringFor( tokens : [Token], in line : SwiftyLine ) -> NSAttributedString {
+	open func attributedStringFor( tokens : [Token], in line : SwiftyLine ) -> NSAttributedString {
 		
 		var finalTokens = tokens
 		let finalAttributedString = NSMutableAttributedString()
@@ -609,6 +641,14 @@ extension SwiftyMarkdown {
 			if styles.contains(.code) {
 				attributes[.foregroundColor] = self.code.color
 				attributes[.font] = self.font(for: line, characterOverride: .code)
+			}
+			
+			if let color = styles.colorStyle {
+				attributes[.foregroundColor] = color
+			}
+			
+			if let font = styles.fontStyle {
+				attributes[.font] = font
 			} else {
 				// Switch back to previous font
 			}
@@ -618,4 +658,56 @@ extension SwiftyMarkdown {
 	
 		return finalAttributedString
 	}
+}
+
+private extension CharacterStyle {
+	#if os(macOS)
+	var color: NSColor? {
+		if case .color(let color) = self {
+			return color
+		}
+		return nil
+	}
+	
+	var font: NSFont? {
+		if case .font(let font) = self {
+			return font
+		}
+		return nil
+	}
+	#else
+	var color: UIColor? {
+		if case .color(let color) = self {
+			return color
+		}
+		return nil
+	}
+	
+	var font: UIFont? {
+		if case .font(let font) = self {
+			return font
+		}
+		return nil
+	}
+	#endif
+}
+
+private extension Array where Element == CharacterStyle {
+	#if os(macOS)
+	var colorStyle: NSColor? {
+		return self.first(where: { $0.color != nil })?.color
+	}
+	
+	var fontStyle: NSFont? {
+		return self.first(where: { $0.font != nil })?.font
+	}
+	#else
+	var colorStyle: UIColor? {
+		return self.first(where: { $0.color != nil })?.color
+	}
+	
+	var fontStyle: UIFont? {
+		return self.first(where: { $0.font != nil })?.font
+	}
+	#endif
 }
