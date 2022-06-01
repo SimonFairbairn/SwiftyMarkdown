@@ -255,6 +255,10 @@ If that is not set, then the system default will be used.
 			return self.lineProcessor.frontMatterAttributes
 		}
 	}
+    
+    public var imageScale : CGFloat = 1
+    
+    public var containImageWidth : Bool = false
 	
 	var currentType : MarkdownLineStyle = .body
 	
@@ -441,6 +445,27 @@ If that is not set, then the system default will be used.
 	
 }
 
+class ImageAttachment: NSTextAttachment {
+    
+    private var imageScale: CGFloat = 1.0
+    private var containImageWidth: Bool = false
+    
+    convenience init(imageScale: CGFloat, containImageWidth: Bool) {
+        self.init()
+        self.imageScale = imageScale
+        self.containImageWidth = containImageWidth
+    }
+    
+    override func attachmentBounds(for textContainer: NSTextContainer?, proposedLineFragment lineFrag: CGRect, glyphPosition position: CGPoint, characterIndex charIndex: Int) -> CGRect {
+        guard let imageSize = image?.size else {
+            return super.attachmentBounds(for: textContainer, proposedLineFragment: lineFrag, glyphPosition: position, characterIndex: charIndex)
+        }
+        let scale: CGFloat = containImageWidth ? min(imageScale, lineFrag.width / imageSize.width) : imageScale
+        
+        return CGRect(x: 0, y: 0, width: imageSize.width * scale, height: imageSize.height * scale)
+    }
+}
+
 extension SwiftyMarkdown {
 	
 	func attributedStringFor( tokens : [Token], in line : SwiftyLine ) -> NSAttributedString {
@@ -592,12 +617,12 @@ extension SwiftyMarkdown {
 					continue
 				}
 				#if !os(macOS)
-				let image1Attachment = NSTextAttachment()
+				let image1Attachment = ImageAttachment(imageScale: imageScale, containImageWidth: containImageWidth)
 				image1Attachment.image = UIImage(named: token.metadataStrings[imgIdx])
 				let str = NSAttributedString(attachment: image1Attachment)
 				finalAttributedString.append(str)
 				#elseif !os(watchOS)
-				let image1Attachment = NSTextAttachment()
+				let image1Attachment = ImageAttachment(imageScale: imageScale, containImageWidth: containImageWidth)
 				image1Attachment.image = NSImage(named: token.metadataStrings[imgIdx])
 				let str = NSAttributedString(attachment: image1Attachment)
 				finalAttributedString.append(str)
