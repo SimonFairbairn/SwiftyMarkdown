@@ -419,7 +419,7 @@ class SwiftyScanner {
 					os_log("Multiple open metadata tags found!", log: OSLog.swiftyScanner, type:.info , groupID)
 				}
 				self.resetTag(in: range)
-                // should not reset tag group. such as [123(asd)]()
+                // should not reset tag group. such as [123(asd)](), just same as normal body characters
 //				self.resetTagGroup(withID: groupID)
 				self.isMetadataOpen = false
 				continue
