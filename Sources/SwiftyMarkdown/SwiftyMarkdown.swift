@@ -250,6 +250,9 @@ If that is not set, then the system default will be used.
 	
 	public var underlineLinks : Bool = false
 	
+	/// **iOS only** : Setting this boolean to true will force using the exact size set for each style if available.
+	public var ignoreDynamicFontSize : Bool = false
+	
 	public var frontMatterAttributes : [String : String] {
 		get {
 			return self.lineProcessor.frontMatterAttributes
