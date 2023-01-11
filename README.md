@@ -310,21 +310,20 @@ static public var characterRules = [
 ```
 
 These Character Rules are defined by SwiftyMarkdown:
-
-	public struct CharacterRule : CustomStringConvertible {
-
-		public let primaryTag : CharacterRuleTag
-		public let tags : [CharacterRuleTag]
-		public let escapeCharacters : [Character]
-		public let styles : [Int : CharacterStyling]
-		public let minTags : Int
-		public let maxTags : Int
-		public var metadataLookup : Bool = false
-		public var definesBoundary = false
-		public var shouldCancelRemainingRules = false
-		public var balancedTags = false
-	}
-
+```swift
+public struct CharacterRule : CustomStringConvertible {
+	public let primaryTag : CharacterRuleTag
+	public let tags : [CharacterRuleTag]
+	public let escapeCharacters : [Character]
+	public let styles : [Int : CharacterStyling]
+	public let minTags : Int
+	public let maxTags : Int
+	public var metadataLookup : Bool = false
+	public var definesBoundary = false
+	public var shouldCancelRemainingRules = false
+	public var balancedTags = false
+}
+```
 1. `primaryTag`: Each rule must have at least one tag and it can be one of `repeating`, `open`, `close`, `metadataOpen`, or `metadataClose`. `repeating` tags are tags that have identical open and close characters (and often have more than 1 style depending on how many are in a group). For example, the `*` tag used in Markdown.
 2. `tags`: An array of other tags that the rule can look for. This is where you would put the `close` tag for a custom rule, for example.
 3. `escapeCharacters`: The characters that appear prior to any of the tag characters that tell the scanner to ignore the tag. 
