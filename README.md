@@ -233,6 +233,9 @@ strikethrough.fontStyle : FontStyle
 underlineLinks : Bool
 
 bullet : String
+
+listInterval: CGFloat
+blockIndent: CGFloat
 ```
 
 `FontStyle` is an enum with these cases: `normal`, `bold`, `italic`, and `bolditalic` to give you more precise control over how lines and character styles should look. For example, perhaps you want blockquotes to default to having the italic style:
