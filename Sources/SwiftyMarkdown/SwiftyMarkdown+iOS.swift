@@ -99,6 +99,9 @@ extension SwiftyMarkdown {
 				fontName = italic.fontName ?? fontName
 				fontSize = italic.fontSize
 				globalItalic = true
+            case .boldItalic:
+                globalBold = true
+                globalItalic = true
 			case .strikethrough:
 				fontName = strikethrough.fontName ?? fontName
 				fontSize = strikethrough.fontSize
@@ -129,12 +132,18 @@ extension SwiftyMarkdown {
 			font = UIFont.preferredFont(forTextStyle: textStyle)
 		}
 		
-		if globalItalic, let italicDescriptor = font.fontDescriptor.withSymbolicTraits(.traitItalic) {
-			font = UIFont(descriptor: italicDescriptor, size: fontSize ?? 0)
-		}
-		if globalBold, let boldDescriptor = font.fontDescriptor.withSymbolicTraits(.traitBold) {
-			font = UIFont(descriptor: boldDescriptor, size: fontSize ?? 0)
-		}
+        var traits: UIFontDescriptor.SymbolicTraits = []
+        if globalItalic {
+            traits.insert(.traitItalic)
+        }
+        if globalBold {
+            traits.insert(.traitBold)
+        }
+        if !traits.isEmpty, let descriptor = font.fontDescriptor.withSymbolicTraits(traits) {
+            let customFont = UIFont(descriptor: descriptor, size: fontSize ?? 0)
+            let fontMetrics = UIFontMetrics(forTextStyle: textStyle)
+            font = fontMetrics.scaledFont(for: customFont)
+        }
 		
 		return font
 		

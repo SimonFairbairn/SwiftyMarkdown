@@ -21,6 +21,7 @@ public enum CharacterStyle : CharacterStyling {
 	case none
 	case bold
 	case italic
+    case boldItalic
 	case code
 	case link
 	case image
@@ -560,11 +561,14 @@ extension SwiftyMarkdown {
 			guard let styles = token.characterStyles as? [CharacterStyle] else {
 				continue
 			}
-			if styles.contains(.italic) {
+            if styles.contains(.boldItalic) {
+                attributes[.font] = self.font(for: line, characterOverride: .boldItalic)
+            } else if styles.contains(.italic), styles.contains(.bold) {
+                attributes[.font] = self.font(for: line, characterOverride: .boldItalic)
+            } else if styles.contains(.italic) {
 				attributes[.font] = self.font(for: line, characterOverride: .italic)
 				attributes[.foregroundColor] = self.italic.color
-			}
-			if styles.contains(.bold) {
+			} else if styles.contains(.bold) {
 				attributes[.font] = self.font(for: line, characterOverride: .bold)
 				attributes[.foregroundColor] = self.bold.color
 			}
