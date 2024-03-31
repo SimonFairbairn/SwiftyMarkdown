@@ -247,6 +247,7 @@ If that is not set, then the system default will be used.
 	open var strikethrough = BasicStyles()
 	
 	public var bullet : String = "・"
+    public var listIndent: Double = 30
 	
 	public var underlineLinks : Bool = false
 	
@@ -506,15 +507,14 @@ extension SwiftyMarkdown {
 			attributes[.paragraphStyle] = paragraphStyle
 		case .unorderedList, .unorderedListIndentFirstOrder, .unorderedListIndentSecondOrder, .orderedList, .orderedListIndentFirstOrder, .orderedListIndentSecondOrder:
 			
-			let interval : CGFloat = 30
-			var addition = interval
+			var addition = listIndent
 			var indent = ""
 			switch line.lineStyle as! MarkdownLineStyle {
 			case .unorderedListIndentFirstOrder, .orderedListIndentFirstOrder:
-				addition = interval * 2
+				addition = listIndent * 2
 				indent = "\t"
 			case .unorderedListIndentSecondOrder, .orderedListIndentSecondOrder:
-				addition = interval * 3
+				addition = listIndent * 3
 				indent = "\t\t"
 			default:
 				break
@@ -523,8 +523,8 @@ extension SwiftyMarkdown {
 			lineProperties = body
 			
 			let paragraphStyle = NSMutableParagraphStyle()
-			paragraphStyle.tabStops = [NSTextTab(textAlignment: .left, location: interval, options: [:]), NSTextTab(textAlignment: .left, location: interval, options: [:])]
-			paragraphStyle.defaultTabInterval = interval
+			paragraphStyle.tabStops = [NSTextTab(textAlignment: .left, location: listIndent, options: [:]), NSTextTab(textAlignment: .left, location: listIndent, options: [:])]
+			paragraphStyle.defaultTabInterval = listIndent
 			paragraphStyle.headIndent = addition
 
 			attributes[.paragraphStyle] = paragraphStyle
